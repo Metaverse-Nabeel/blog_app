@@ -4,6 +4,6 @@ class Like < ApplicationRecord
 
   def increment_like_counter
     puts 'Incrementing like counter'
-    user.increment!(:likes_counter)
+    post.increment!(:likes_counter)
   end
 end
