@@ -71,6 +71,7 @@
 ### Key Features <a name="key-features"></a>
 
 - **[Creating a data model]**
+- **[Process data in model]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
