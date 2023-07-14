@@ -72,6 +72,8 @@
 
 - **[Creating a data model]**
 - **[Process data in model]**
+- **[Added Validations in model]**
+- **[Added Unit Tests in model]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -79,7 +81,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo]()
+- [Live Demo](CommingSoon)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
