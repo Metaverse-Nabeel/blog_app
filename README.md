@@ -21,7 +21,6 @@
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-  - [Deployment](#deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -102,17 +101,12 @@ This project does require additional dependencies. However, it uses RuboCop as a
 ```sh
 bundle install
 ```
-
-```sh
-gem install colorize
-```
-
 ### Usage
 
 To run the project, navigate to the project directory and execute the following command:
 
 ```sh
-  ruby test.rb
+  rails server
 ```
 
 ### Run tests
@@ -121,10 +115,8 @@ To run tests, run the following command:
 
 Run the following command
 ```sh
-rubocop
+rspec "path for the file"
 ```
-
-### Deployment
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
