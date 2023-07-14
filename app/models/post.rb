@@ -1,22 +1,24 @@
 class Post < ApplicationRecord
-  has_many :comments, foreign_key: 'post_id'
-  has_many :likes, foreign_key: 'post_id'
+  validates :Title, presence: true, length: { maximum: 250 }
+  validates :CommentsCounter, numericality: { only_integer: true }, comparison: { greater_than_or_equal_to: 0 }
+  validates :LikesCounter, numericality: { only_integer: true }, comparison: { greater_than_or_equal_to: 0 }
+
   belongs_to :user, foreign_key: 'author_id'
+  has_many :likes
+  has_many :comments
 
   after_create :increment_post_counter
   after_destroy :decrement_post_counter
 
   def increment_post_counter
-    puts 'Incrementing post counter'
     user.increment!(:post_counter)
   end
 
   def decrement_post_counter
-    puts 'Decrementing post counter'
     user.decrement!(:post_counter)
   end
 
-  def most_recent_comments
+  def recent_comments
     comments.order(created_at: :desc).limit(5)
   end
 end

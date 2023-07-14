@@ -15,14 +15,12 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-  - [Deployment](#deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -72,23 +70,18 @@
 
 - **[Creating a data model]**
 - **[Process data in model]**
+- **[Added Validations in model]**
+- **[Added Unit Tests in model]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- [Live Demo]()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
 To get a local copy up and running, follow these steps.
-
+sdsds
 ### Prerequisites
 
 Ruby & Rails
@@ -108,17 +101,12 @@ This project does require additional dependencies. However, it uses RuboCop as a
 ```sh
 bundle install
 ```
-
-```sh
-gem install colorize
-```
-
 ### Usage
 
 To run the project, navigate to the project directory and execute the following command:
 
 ```sh
-  ruby test.rb
+  rails server
 ```
 
 ### Run tests
@@ -127,10 +115,8 @@ To run tests, run the following command:
 
 Run the following command
 ```sh
-rubocop
+rspec "path for the file"
 ```
-
-### Deployment
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
