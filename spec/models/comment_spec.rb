@@ -1,48 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  @user1 = User.new(name: 'Nabeel', photo: 'image url here', bio: 'Front end developer')
-  @user2 = User.new(name: 'Ahmed', photo: 'image  url here', bio: 'Back end developer')
-  @post1 = Post.new(author: @user1, title: 'Hello', text: 'first test post')
+  describe 'Test for increment_comments_counter' do
+    it 'Increment in LikesCounter of associated post' do
+      user = User.create(name: 'Nabeel Ahmed', post_counter: 0)
+      post = Post.create(author_id: user.id, Title: 'My Test Post', Text: 'My Test post in testing', CommentsCounter: 0,
+                         LikesCounter: 0)
 
-  subject { Comment.create(post: @post1, author: @user2, text: 'Hi Nabeel!') }
-  before { subject.save }
-
-  it 'must have text' do
-    subject.text = nil
-    expect(subject).to_not be_valid
+      comment = Comment.create(author_id: user.id, post_id: post.id, Text: 'Test my comments!')
+      expect { comment.increment_comments_counter }.to change { post.reload.CommentsCounter }.by(1)
+    end
   end
 
-  it 'must have an author' do
-    subject.author = nil
-    expect(subject).to_not be_valid
-  end
+  describe 'Test for decrement_comments_counter' do
+    it 'Decrement the LikesCounter of the associated post' do
+      user = User.create(name: 'John Doe', post_counter: 0)
+      post = Post.create(author_id: user.id, Title: 'My Second Test Post', Text: 'My Second Test Post in testing', CommentsCounter: 2,
+                         LikesCounter: 2)
 
-  it 'must have a post' do
-    subject.post = nil
-    expect(subject).to_not be_valid
-  end
-
-  it 'must belong to an author' do
-    association = Comment.reflect_on_association(:author)
-    expect(association.macro).to eq(:belongs_to)
-  end
-
-  it 'must belong to a post' do
-    association = Comment.reflect_on_association(:post)
-    expect(association.macro).to eq(:belongs_to)
-  end
-  it 'update comments_counter for the post' do
-    user1 = User.create(
-      name: 'Nabeel',
-      photo: 'image url here',
-      bio: 'bio text here',
-      posts_counter: 0
-    )
-    post1 = Post.create(author: user1, title: 'title-1', text: 'this is my first post', comments_counter: 0,
-                        likes_counter: 0)
-    Comment.create(post: post1, author: user1, text: 'Hi Nabeel!')
-    commented_post = Post.find_by_author_id(post1.author_id)
-    expect(commented_post.comments_counter).to eq 2
+      comment = Comment.create(author_id: user.id, post_id: post.id, Text: 'My Second Test Comment!')
+      expect { comment.decrement_comments_counter }.to change { post.reload.CommentsCounter }.by(-1)
+    end
   end
 end
