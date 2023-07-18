@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
-  def posts
+  def index
+    render 'index'
+  end
+  def show
+    render 'show'
   end
 end
