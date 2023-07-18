@@ -72,6 +72,8 @@
 - **[Process data in model]**
 - **[Added Validations in model]**
 - **[Added Unit Tests in model]**
+- **[Added Routes in model]**
+- **[Added Users and Posts Views in model]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
