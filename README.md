@@ -74,6 +74,7 @@
 - **[Added Unit Tests in model]**
 - **[Added Routes in model]**
 - **[Added Users and Posts Views in model]**
+- **[Added Tests for Users and Posts Controllers]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
