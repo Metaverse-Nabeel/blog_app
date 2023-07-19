@@ -1,1 +1,17 @@
-<h1>This is to show a specific user</h1>
+<html>
+  <head>
+    <%= stylesheet_link_tag 'single_user' %>
+  </head>
+  <body>
+  <h1>A specific User's details</h1>
+  <%= render 'shared/container_user', user: @user %>
+<div class="user-bio">
+    <h4 class="bio-p"> Bio of <%= @user.name %></h4>
+    <p><%= @user.bio %></p>
+</div>
+<%= render partial: 'shared/posts', locals: { posts: @user.posts } %>
+<div>
+    <button class="btn btn-primary">see more</button>
+</div>
+</body>
+</html>

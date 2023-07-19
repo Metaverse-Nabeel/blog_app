@@ -1,0 +1,115 @@
+.container-user {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  padding: 2%;
+}
+
+.img-user-s {
+  width: 100px;
+  border-radius: 2%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  height: 7rem;
+  background-color: white;
+}
+
+.ul-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  width: 90%;
+  height: 7rem;
+  border: 1px solid;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: rgb(132, 45, 14);
+  background-color: #f1c5a5;
+  border-color: rgb(132, 45, 14);
+}
+
+.ul-user li {
+  margin-right: 10px;
+  margin-right: 5%;
+}
+
+.user-bio {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  margin: 3% auto;
+  padding: 2%;
+  border: 1px solid blue;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: blue;
+  background-color: #e6f1ff;
+}
+
+.users-posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  margin: 3% auto;
+  padding: 2%;
+  border: 1px groove rgb(57, 56, 56);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  background-color: #f5f5dc;
+}
+
+.text {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 2%;
+  color: blue;
+}
+
+.comment-text {
+  margin-right: 2%;
+}
+
+/* button */
+.btn {
+  display: block;
+  margin: 16px auto 16px auto;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+/* cutsom link */
+.custom-link-s {
+  color: rgb(93, 93, 233);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s; /* Add a smooth color transition on hover */
+}
+
+.custom-link-s:hover {
+  color: darkblue; /* Change the color on hover */
+}

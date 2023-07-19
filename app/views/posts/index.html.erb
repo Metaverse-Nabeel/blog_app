@@ -1,1 +1,12 @@
-<h1>This is to show all the posts</h1>
+<%  PostsHelper %>
+
+<html>
+  <head>
+    <%= stylesheet_link_tag 'all_posts' %>
+  </head>
+  <body>
+  <%= render 'shared/container_user', user: @user %> 
+  <%= render 'posts_display' %>
+    <button class="btn btn-primary">pagination</button>
+  </body>
+</html>
