@@ -1,0 +1,48 @@
+.users-posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0; /* Remove the top margin */
+  padding: 2%;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 90%;
+}
+
+.text {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 2%;
+}
+
+.comment-text {
+  margin-right: 2%;
+}
+
+.ul-comments-box {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 2%;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 90%;
+}
+
+.text-author {
+  display: flex;
+  flex-direction: row;
+  color: blue;
+}
+
+.by-author {
+  margin-left: 1%;
+}

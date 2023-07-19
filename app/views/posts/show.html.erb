@@ -1,1 +1,10 @@
-<h1>This is to show a specific the posts</h1>
+<html>
+  <head>
+    <%= stylesheet_link_tag 'single_post' %>
+  </head>
+  <body>
+  <%= render 'single_post' %>
+    <%= render_comments_section(@post) %>
+
+  </body>
+</html>
