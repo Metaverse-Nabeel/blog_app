@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       format.json { render json: @post }
     end
   end
-  
+
   def new
     @post = Post.new
   end
