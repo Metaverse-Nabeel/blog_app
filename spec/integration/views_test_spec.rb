@@ -147,5 +147,5 @@ RSpec.describe 'User', type: :system do
       expect(page).to have_content 'Username: Hello'
       expect(page).to have_content 'Username: What is Up'
     end
-
+  end
 end
