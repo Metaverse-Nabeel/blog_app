@@ -124,5 +124,28 @@ RSpec.describe 'User', type: :system do
     end
   end
 
-  # Tisloh = Write your tests here and make necessary changes to the Readme as well.
+  describe 'Post#show' do
+    before(:each) do
+      visit "/users/#{@jin.id}/posts/#{@post1.id}"
+    end
+    it 'post title' do
+      expect(page).to have_content 'title 1'
+    end
+    it 'Author name' do
+      expect(page).to have_content 'title 1 by Ahmed'
+    end
+    it 'comments count show' do
+      expect(page).to have_content 'Comments: 2'
+    end
+    it 'likes count show' do
+      expect(page).to have_content 'Likes: 1'
+    end
+    it 'who commented?' do
+      expect(page).to have_content('Username:')
+    end
+    it 'show all comments with name:' do
+      expect(page).to have_content 'Username: Hello'
+      expect(page).to have_content 'Username: What is Up'
+    end
+
 end
