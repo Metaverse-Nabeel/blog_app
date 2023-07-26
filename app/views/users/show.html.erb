@@ -11,7 +11,7 @@
 </div>
 <%= render partial: 'shared/posts', locals: { posts: @user.posts } %>
 <div>
-    <button class="btn btn-primary">see more</button>
+  <a href='/users/<%= @user.id%>/posts' class='btn btn-primary'>see more</a>
 </div>
 </body>
 </html>
