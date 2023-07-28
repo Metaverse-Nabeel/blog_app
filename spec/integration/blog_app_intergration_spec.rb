@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User', type: :system do
   before(:each) do
-    @profile1 = User.create(name: 'Atif',
+    @profile1 = User.create(name: 'Nabeel',
                             photo: 'https://as2.ftcdn.net/v2/jpg/03/26/98/51/1000_F_326985142_1aaKcEjMQW6ULp6oI9MYuv8lN9f8sFmj.jpg',
                             bio: 'Teacher from Mexico.',
                             posts_counter: 0)
@@ -58,7 +58,7 @@ RSpec.describe 'User', type: :system do
     end
 
     it 'Redirect to user page' do
-      click_link 'Atif'
+      click_link 'Nabeel'
       expect(page).to have_current_path("/users/#{@profile1.id}")
     end
   end
@@ -151,8 +151,8 @@ RSpec.describe 'User', type: :system do
       expect(page).to have_content(@profile1.name)
     end
     it 'show all comments with name:' do
-      expect(page).to have_content 'Atif: Hello'
-      expect(page).to have_content 'Atif: wassup'
+      expect(page).to have_content 'Nabeel: Hello'
+      expect(page).to have_content 'Nabeel: wassup'
     end
   end
 end
