@@ -1,12 +1,6 @@
-<html>
-  <head>
-    <%= stylesheet_link_tag 'all_users' %>
-  </head>
-  <body>
-  <div>
-    <a href='/users/new/posts/new' class="btn btn-primary"> Add New Post</a>
-  </div>
-  <h2 class="users-available">All Users</h2>
-  <%= render 'users_display' %>
-  </body>
-</html>
+<div>
+    <a href='/users/new/posts/new'> Add New Post</a>
+</div>
+<% @users.each do |user| %>
+    <%= render partial: 'shared/user_info', locals: { user: user } %>
+<% end %>

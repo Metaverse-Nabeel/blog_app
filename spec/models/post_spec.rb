@@ -1,70 +1,99 @@
 require 'rails_helper'
 
-RSpec.describe Post, type: :model do
-  subject { Post.new(Title: 'This is a test post', CommentsCounter: 2, LikesCounter: 1) }
+describe Post, type: :model do
+  subject do
+    first_user = User.create(name: 'Atif', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+                             bio: 'A pakistani micronaut.', posts_counter: 0)
+    Post.create(author: first_user, title: 'Hello', text: 'This is a personal post', likes_counter: 0,
+                comments_counter: 0)
+  end
 
   before { subject.save }
 
-  it '#test Title should be present' do
-    subject.Title = nil
+  it 'title cannot be blank' do
+    subject.title = nil
     expect(subject).to_not be_valid
   end
 
-  it '#test Title must not exceed 250 characters' do
-    subject.Title = 'a' * 251
+  it 'created successful' do
+    expect(subject).to be_valid
+  end
+
+  it "should check number of the  title's characters" do
+    subject.title = "Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+    Eius dolorum velit modi suscipit Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius dolorum
+    velit modi suscipit unde dignissimos unde dignissimos alias deserunt beatae sit
+    vitae corrupti illum ad ratione,
+    corrupti illum ad ratione, voluptas nobis. Velit nisi soluta sint
+    voluptas nobis. Velit nisi soluta sint.
+     alias deserunt beatae sit vitae."
     expect(subject).to_not be_valid
   end
 
-  it '#test CommentsCounter should be greater than or equal to 0' do
-    subject.CommentsCounter = -1
+  it 'comments_counter should be integer' do
+    subject.comments_counter = 1.2
     expect(subject).to_not be_valid
   end
 
-  it '#test LikesCounter should be greater than or equal to 0' do
-    subject.LikesCounter = -1
+  it 'comments_counter should be greater or equal to 0' do
+    subject.comments_counter = 0
+    expect(subject).to be_valid
+    subject.comments_counter = 200
+    expect(subject).to be_valid
+  end
+
+  it 'comments_counter cannot be a negative' do
+    subject.comments_counter = -1
     expect(subject).to_not be_valid
   end
 
-  describe '#Test for increment_post_counter' do
-    it '#test increments the post_counter of the associated user' do
-      user = User.create(name: 'Nabeel Ahmed', post_counter: 0)
-      post = Post.create(author_id: user.id, Title: 'My Test Post', Text: 'My Test post in testing',
-                         CommentsCounter: 0, LikesCounter: 0)
-      expect { post.increment_post_counter }.to change { user.reload.post_counter }.by(1)
+  it 'likes_counter should be be greater or equal to 0' do
+    subject.likes_counter = 0
+    expect(subject).to be_valid
+    subject.likes_counter = 200
+    expect(subject).to be_valid
+  end
+
+  it 'likes_counter should be be integer' do
+    subject.likes_counter = 1.2
+    expect(subject).to_not be_valid
+  end
+
+  it 'likes_counter cannot be negative' do
+    subject.likes_counter = -1
+    expect(subject).to_not be_valid
+  end
+  describe 'scopes' do
+    describe '.five_recent_comments' do
+      let!(:user) { User.create(name: 'Atif Zada') }
+      let!(:post) { Post.create(title: 'Test Post', author: user) }
+      let!(:recent_comments) { create_comments(post, 5, 1.day.ago) }
+      let!(:older_comments) { create_comments(post, 3, 2.days.ago) }
+
+      it 'returns the five most recent comments for the post' do
+        expect(Post.five_recent_comments(post)) == (recent_comments.reverse)
+      end
+
+      it 'limits the result to five comments' do
+        expect(Post.five_recent_comments(post).count) == (5)
+      end
     end
   end
-
-  describe '#Test for decrement_post_counter' do
-    it '#test decrements the post_counter of the associated user' do
-      user = User.create(name: 'Nabeel Ahmed', post_counter: 4)
-      post = Post.create(author_id: user.id, Title: 'My Test Post', Text: 'My Test post in testing',
-                         CommentsCounter: 0, LikesCounter: 0)
-
-      expect { post.decrement_post_counter }.to change { user.reload.post_counter }.by(-1)
+  def create_comments(post, count, created_at)
+    comments = []
+    count.times do
+      comments << Comment.create(post:, created_at:)
     end
+    comments
   end
+  describe '#update_posts_counter' do
+    let!(:author) { User.create(name: 'John Doe', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'A user', posts_counter: 0) }
+    let!(:post) do
+      Post.create(author:, title: 'Test Post', text: 'This is a test post', likes_counter: 0, comments_counter: 0)
+    end
 
-  describe '#Test forrecent_comments' do
-    it '#test returns the five most recent comments' do
-      # Create a user
-      user = User.create(name: 'Nabeel Ahmed', post_counter: 0)
-
-      # Create a post
-      post = Post.create(author_id: user.id, Title: 'My Test Post', Text: 'My Test post in testing',
-                         CommentsCounter: 0, LikesCounter: 0)
-
-      # Create test comments for the post
-      Comment.create(post_id: post.id, author_id: user.id, Text: 'Hi Nabeel!')
-      comment2 = Comment.create(post_id: post.id, author_id: user.id, Text: 'Hi Nabeel!')
-      comment3 = Comment.create(post_id: post.id, author_id: user.id, Text: 'Hi Nabeel!')
-      comment4 = Comment.create(post_id: post.id, author_id: user.id, Text: 'Hi Nabeel!')
-      comment5 = Comment.create(post_id: post.id, author_id: user.id, Text: 'Hi Nabeel!')
-      comment6 = Comment.create(post_id: post.id, author_id: user.id, Text: 'Hi Nabeel!')
-
-      newer_comments = [comment6, comment5, comment4, comment3, comment2]
-
-      # Ensure that only the five most recent comments are returned
-      expect(post.recent_comments).to eq(newer_comments)
+    it 'increments the posts_counter of the author' do
+      expect { post.update_posts_counter }.to change { author.reload.posts_counter }.by(1)
     end
   end
 end
