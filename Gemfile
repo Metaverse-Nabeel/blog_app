@@ -79,4 +79,4 @@ group :test do
   end
 end
 
-gem "devise", "~> 4.9"
+gem 'devise', '~> 4.9'

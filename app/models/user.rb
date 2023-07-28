@@ -23,5 +23,4 @@ class User < ApplicationRecord
     self.name = email.split('@')[0]
     self.posts_counter = 0
   end
-  
 end
