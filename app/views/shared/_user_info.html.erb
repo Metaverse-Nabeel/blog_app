@@ -1,0 +1,13 @@
+<div class='main'>
+  <div class='box imgbox'>
+    <img src='<%= user.photo %>' alt='Author-img' class='imgbox'>
+  </div>
+  <div class='box my_card'>
+    <a href='/users/<%= user.id %>'>
+      <h2 class='title'><%= user.name %></h2>
+    </a>
+    <p class='posts_counter '>
+      Total number of posts: <%= user.posts_counter %>
+    </p>
+  </div>
+</div>

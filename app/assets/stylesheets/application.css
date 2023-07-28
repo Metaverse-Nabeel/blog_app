@@ -1,15 +1,87 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.imgbox {
+  height: 100px;
+  width: 100px;
+}
+
+.my_card {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  width: 50%;
+  gap: 2.1rem;
+  padding: 1.2rem;
+}
+
+.box {
+  border: solid 1px black;
+}
+
+.title {
+  padding: 0 0.5rem;
+  align-self: center;
+}
+
+.posts_counter {
+  margin-left: 5rem;
+  margin-right: 0.25rem;
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+a {
+  color: black;
+  text-decoration: solid;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.1rem 10.1rem;
+  width: 65%;
+}
+
+.counters {
+  padding-right: 1rem;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.my-btns {
+  width: max-content;
+  align-self: center;
+  border: solid 1px black;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dis_contt {
+  margin: 2rem 4rem;
+}
+
+.indexbox {
+  width: 66%;
+  margin-left: 10rem;
+}
+
+.commentsbox {
+  display: flex;
+  flex-direction: column;
+}
+
+.posts_container {
+  display: flex;
+  justify-content: space-around;
+}

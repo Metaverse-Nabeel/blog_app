@@ -1,12 +1,22 @@
-<%  PostsHelper %>
+<%= render 'shared/user_info', user: @user %>
 
-<html>
-  <head>
-    <%= stylesheet_link_tag 'all_posts' %>
-  </head>
-  <body>
-  <%= render 'shared/container_user', user: @user %> 
-  <%= render 'posts_display' %>
-    <button class="btn btn-primary">pagination</button>
-  </body>
-</html>
+<div class='indexbox'>
+  <% @posts.includes(:author).each do |post| %>
+    <div class='box commentsbox'>
+      <a href='/users/<%= post.author_id%>/posts/<%= post.id%>'><%= post.title%></a>
+      <p>
+        <%= post.text%>
+      </p>
+      <p class='counters'>Comments: <%= post.comments_counter %> Likes: <%= post.likes_counter %></p>
+  </div>
+  <div class='box'>
+    <% Post.includes(:author, :post).five_recent_comments(post).each do |comment| %>
+      <p><%= comment.author.name %> - <%= comment.text %></p>
+    <% end %>
+  </div>
+  <br />
+  <% end %>
+  <div class='btn'>
+    <button class='my-btns'>Pagination</button>
+  </div>
+</div>

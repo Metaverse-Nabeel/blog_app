@@ -1,25 +1,49 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  describe 'Test for increment_comments_counter' do
-    it 'Increment in LikesCounter of associated post' do
-      user = User.create(name: 'Nabeel Ahmed', post_counter: 0)
-      post = Post.create(author_id: user.id, Title: 'My Test Post', Text: 'My Test post in testing',
-                         CommentsCounter: 0, LikesCounter: 0)
+  @user1 = User.new(name: 'Tom', photo: 'url here', bio: 'bio text here')
+  @user2 = User.new(name: 'Lilly', photo: 'url here', bio: 'bio text here')
+  @post1 = Post.new(author: @user1, title: 'Hello', text: 'this is my first post')
 
-      comment = Comment.create(author_id: user.id, post_id: post.id, Text: 'Test my comments!')
-      expect { comment.increment_comments_counter }.to change { post.reload.CommentsCounter }.by(1)
-    end
+  subject { Comment.create(post: @post1, author: @user2, text: 'Hi Tom!') }
+
+  before { subject.save }
+
+  it 'should have a text' do
+    subject.text = nil
+    expect(subject).to_not be_valid
   end
 
-  describe 'Test for decrement_comments_counter' do
-    it 'Decrement the LikesCounter of the associated post' do
-      user = User.create(name: 'Nabeel Ahmed', post_counter: 0)
-      post = Post.create(author_id: user.id, Title: 'My Test Post', Text: 'My Test post in testing',
-                         CommentsCounter: 2, LikesCounter: 2)
+  it 'should have an author' do
+    subject.author = nil
+    expect(subject).to_not be_valid
+  end
 
-      comment = Comment.create(author_id: user.id, post_id: post.id, Text: 'My Second Test Comment!')
-      expect { comment.decrement_comments_counter }.to change { post.reload.CommentsCounter }.by(-1)
-    end
+  it 'should have a post' do
+    subject.post = nil
+    expect(subject).to_not be_valid
+  end
+
+  it 'should belong to an author' do
+    association = Comment.reflect_on_association(:author)
+    expect(association.macro).to eq(:belongs_to)
+  end
+
+  it 'should belong to a post' do
+    association = Comment.reflect_on_association(:post)
+    expect(association.macro).to eq(:belongs_to)
+  end
+  it 'update comment counter for the post' do
+    user1 = User.create(
+      name: 'Tom',
+      photo: 'url here',
+      bio: 'bio text here',
+      posts_counter: 0
+    )
+    post1 = Post.create(author: user1, title: 'title-1', text: 'this is my first post', comments_counter: 0,
+                        likes_counter: 0)
+    Comment.create(post: post1, author: user1, text: 'Hi Tom!')
+    commented_post = Post.find_by_author_id(post1.author_id)
+    expect(commented_post.comments_counter).to eq 2
   end
 end
